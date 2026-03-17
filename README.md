@@ -54,7 +54,8 @@ npm run dev
 
 ## Screenshot
 
-*(dashboard screenshot)*
+<img width="1568" height="760" alt="image" src="https://github.com/user-attachments/assets/b561fc7a-e006-49d9-b3c6-8e0c6ab3363a" />
+
 
 ## Key Metrics
 
