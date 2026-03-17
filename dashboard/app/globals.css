@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #0f0f1a;
+  --bg-panel: #12121f;
+  --border: #1e1e3a;
+  --text-primary: #e8e8f0;
+  --text-secondary: #6b6b8a;
+  --text-mono: 'Share Tech Mono', 'Courier New', monospace;
+
+  /* Channel signal colors */
+  --ch-0: #00ff88;
+  --ch-1: #00ccff;
+  --ch-2: #ff6b6b;
+  --ch-3: #ffd93d;
+  --ch-4: #c77dff;
+  --ch-5: #ff9f43;
+  --ch-6: #48dbfb;
+  --ch-7: #ff6b9d;
+
+  --anomaly: #ff3333;
+  --anomaly-glow: rgba(255, 51, 51, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Panel base */
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+}
+
+/* Monospace readout */
+.mono {
+  font-family: var(--text-mono);
+  letter-spacing: 0.05em;
+}
+
+/* Anomaly border flash */
+@keyframes anomalyFlash {
+  0%   { border-color: var(--anomaly); box-shadow: 0 0 8px var(--anomaly-glow), inset 0 0 8px var(--anomaly-glow); }
+  50%  { border-color: var(--anomaly); box-shadow: 0 0 16px var(--anomaly-glow), inset 0 0 12px var(--anomaly-glow); }
+  100% { border-color: var(--border); box-shadow: none; }
+}
+
+.anomaly-flash {
+  animation: anomalyFlash 0.6s ease-out forwards;
+}
+
+/* Alert row flash-in */
+@keyframes alertIn {
+  0%   { background-color: rgba(255, 51, 51, 0.35); }
+  100% { background-color: transparent; }
+}
+
+.alert-new {
+  animation: alertIn 0.5s ease-out forwards;
+}
+
+/* Status dot pulse */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.dot-pulse {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+/* Scan line overlay (subtle) */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
